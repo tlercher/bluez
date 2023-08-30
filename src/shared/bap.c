@@ -3210,8 +3210,8 @@ static void bap_parse_pacs(struct bt_bap *bap, uint8_t type,
 
 		util_iov_pull_mem(&iov, meta->len);
 
-		DBG(bap, "PAC #%u: type %u codec 0x%02x cc_len %u meta_len %u",
-			i, type, p->codec.id, p->cc_len, meta->len);
+		DBG(bap, "PAC #%u (%p): type %u codec 0x%02x cc_len %u meta_len %u",
+			i, p, type, p->codec.id, p->cc_len, meta->len);
 
 		/* Check if there is already a PAC record for the codec */
 		pac = bap_pac_find(bap->rdb, type, &p->codec);
@@ -4169,7 +4169,7 @@ clone:
 			}
 		}
 
-		/* Resume reading sources if supported */
+		/* Resume reading sources if supported 
 		if (pacs->source && queue_isempty(bap->rdb->sources)) {
 			if (gatt_db_attribute_get_char_data(pacs->source,
 							NULL, &value_handle,
@@ -4179,7 +4179,7 @@ clone:
 							read_source_pac,
 							bap, NULL);
 			}
-		}
+		}*/
 
 		queue_foreach(bap->remote_eps, bap_endpoint_foreach, bap);
 
