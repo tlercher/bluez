@@ -71,6 +71,7 @@
 
 #define CODEC_ID_CVSD 0x01
 #define CODEC_ID_MSBC 0x02
+#define CODEC_ID_LC3_SWB 0x03
 
 #define MAX_NUMBER_LEN 33
 #define MAX_OPERATOR_NAME_LEN 17
@@ -110,7 +111,7 @@ struct device {
 
 	uint8_t negotiated_codec;
 	uint32_t features;
-	struct hfp_codec codecs[2];
+	struct hfp_codec codecs[3];
 
 	struct indicator ag_ind[HFP_INDICATOR_LAST];
 
@@ -120,6 +121,7 @@ struct device {
 static const struct hfp_codec codecs_defaults[] = {
 	{ CODEC_ID_CVSD, true, false},
 	{ CODEC_ID_MSBC, false, false},
+	{ CODEC_ID_LC3_SWB, false, false},
 };
 
 static bdaddr_t adapter_addr;
@@ -2119,6 +2121,8 @@ static void connect_sco_cb(enum sco_status status, const bdaddr_t *addr)
 	}
 
 	if (dev->negotiated_codec == CODEC_ID_MSBC)
+		audio_state = HAL_HF_CLIENT_AUDIO_STATE_CONNECTED_LC3;
+	else if (dev->negotiated_codec == CODEC_ID_MSBC)
 		audio_state = HAL_HF_CLIENT_AUDIO_STATE_CONNECTED_MSBC;
 	else
 		audio_state = HAL_HF_CLIENT_AUDIO_STATE_CONNECTED;

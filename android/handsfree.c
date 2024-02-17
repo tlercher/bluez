@@ -2636,7 +2636,7 @@ static sdp_record_t *headset_ag_record(void)
 	sdp_set_service_classes(record, svclass_id);
 
 	sdp_uuid16_create(&profile.uuid, HEADSET_PROFILE_ID);
-	profile.version = 0x0102;
+	profile.version = 0x0109;
 	pfseq = sdp_list_append(NULL, &profile);
 	sdp_set_profile_descs(record, pfseq);
 
@@ -2782,7 +2782,7 @@ static sdp_record_t *hfp_ag_record(void)
 	sdp_set_service_classes(record, svclass_id);
 
 	sdp_uuid16_create(&profile.uuid, HANDSFREE_PROFILE_ID);
-	profile.version = 0x0106;
+	profile.version = 0x0109;
 	pfseq = sdp_list_append(NULL, &profile);
 	sdp_set_profile_descs(record, pfseq);
 

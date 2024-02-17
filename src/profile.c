@@ -2069,7 +2069,7 @@ static struct default_settings {
 		.authorize	= true,
 		.auto_connect	= true,
 		.get_record	= get_hfp_hf_record,
-		.version	= 0x0107,
+		.version	= 0x0109,
 	}, {
 		.uuid		= HSP_HS_UUID,
 		.name		= "Headset unit",
@@ -2089,7 +2089,7 @@ static struct default_settings {
 		.authorize	= true,
 		.auto_connect	= true,
 		.get_record	= get_hfp_ag_record,
-		.version	= 0x0107,
+		.version	= 0x0109,
 		/* HFP 1.7.2: By default features bitfield is 0b001001 */
 		.features	= 0x09,
 	}, {

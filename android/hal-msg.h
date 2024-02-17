@@ -2141,6 +2141,7 @@ struct hal_ev_hf_client_conn_state {
 #define HAL_HF_CLIENT_AUDIO_STATE_CONNECTING		0x01
 #define HAL_HF_CLIENT_AUDIO_STATE_CONNECTED		0x02
 #define HAL_HF_CLIENT_AUDIO_STATE_CONNECTED_MSBC	0x03
+#define HAL_HF_CLIENT_AUDIO_STATE_CONNECTED_LC3		0x04
 
 #define HAL_EV_HF_CLIENT_AUDIO_STATE			0x82
 struct hal_ev_hf_client_audio_state {
