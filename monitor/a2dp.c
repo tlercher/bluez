@@ -49,6 +49,8 @@
 #define LDAC_CODEC_ID		0x00aa
 #define OPUS_G_VENDOR_ID	0x000000e0
 #define OPUS_G_CODEC_ID		0x0001
+#define EAC3_A_VENDOR_ID	0x0000004c
+#define EAC3_A_CODEC_ID		0x8001
 
 struct bit_desc {
 	uint8_t bit_num;
@@ -265,6 +267,7 @@ static bool codec_vendor_aptx_hd_cap(uint8_t losc, struct l2cap_frame *frame);
 static bool codec_vendor_aptx_hd_cfg(uint8_t losc, struct l2cap_frame *frame);
 static bool codec_vendor_ldac(uint8_t losc, struct l2cap_frame *frame);
 static bool codec_vendor_opus_g(uint8_t losc, struct l2cap_frame *frame);
+static bool codec_vendor_eac3_a(uint8_t losc, struct l2cap_frame *frame);
 
 static const struct vndcodec vndcodecs[] = {
 	{ APTX_VENDOR_ID, APTX_CODEC_ID, "aptX",
@@ -279,6 +282,8 @@ static const struct vndcodec vndcodecs[] = {
 	  codec_vendor_ldac, codec_vendor_ldac },
 	{ OPUS_G_VENDOR_ID, OPUS_G_CODEC_ID, "Opus (Google)",
 	  codec_vendor_opus_g, codec_vendor_opus_g },
+	{ EAC3_A_VENDOR_ID, EAC3_A_CODEC_ID, "EAC-3 (Apple)",
+	  codec_vendor_eac3_a, codec_vendor_eac3_a },
 	{ }
 };
 
@@ -730,6 +735,11 @@ static bool codec_vendor_opus_g(uint8_t losc, struct l2cap_frame *frame)
 
 	print_field("%*cReserved: 0x%02x", BASE_INDENT + 2, ' ', cap & 0x60);
 
+	return true;
+}
+
+static bool codec_vendor_eac3_a(uint8_t losc, struct l2cap_frame *frame)
+{
 	return true;
 }
 

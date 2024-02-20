@@ -262,6 +262,10 @@
 #define OPUS_G_CHANNELS_STEREO		0x02
 #define OPUS_G_CHANNELS_DUAL		0x04
 
+/* Apple EAC-3 */
+#define EAC3_A_VENDOR_ID		0x0000004c
+#define EAC3_A_CODEC_ID			0x8001
+
 typedef struct {
 	uint8_t vendor_id4;
 	uint8_t vendor_id3;
@@ -437,3 +441,6 @@ typedef struct {
 	a2dp_vendor_codec_t info;
 	uint8_t data;
 } __attribute__ ((packed)) a2dp_opus_g_t;
+
+typedef struct {
+} __attribute__ ((packed)) a2dp_eac3_a_t;

@@ -309,6 +309,38 @@ static void print_ldac(a2dp_ldac_t *ldac, uint8_t size)
 	printf("\n");
 }
 
+static void print_opus_g(a2dp_opus_g_t *opus, uint8_t size)
+{
+	printf("\t\tVendor Specific Value (Google Opus)");
+
+	if (size < sizeof(*opus)) {
+		printf(" (broken)\n");
+		return;
+	}
+
+	printf("\n\t\t\tFrequencies: ");
+	printf("\n\t\t\tFrame duration: ");
+	printf("\n\t\t\tChannel modes: ");
+
+	printf("\n");
+}
+
+static void print_eac3_a(a2dp_eac3_a_t *eac, uint8_t size)
+{
+	printf("\t\tVendor Specific Value (Apple EAC-3)");
+
+	if (size < sizeof(*eac)) {
+		printf(" (broken)\n");
+		return;
+	}
+
+	printf("\n\t\t\tFrequencies: ");
+	printf("\n\t\t\tFrame duration: ");
+	printf("\n\t\t\tChannel modes: ");
+
+	printf("\n");
+}
+
 static void print_vendor(a2dp_vendor_codec_t *vendor, uint8_t size)
 {
 	uint32_t vendor_id;
@@ -345,6 +377,10 @@ static void print_vendor(a2dp_vendor_codec_t *vendor, uint8_t size)
 		print_aptx_hd((void *) vendor, size);
 	else if (vendor_id == LDAC_VENDOR_ID && codec_id == LDAC_CODEC_ID)
 		print_ldac((void *) vendor, size);
+	else if (vendor_id == OPUS_G_VENDOR_ID && codec_id == OPUS_G_CODEC_ID)
+		print_opus_g((void *) vendor, size);
+	else if (vendor_id == EAC3_A_VENDOR_ID && codec_id == EAC3_A_CODEC_ID)
+		print_eac3_a((void *) vendor, size);
 }
 
 static void print_mpeg24(a2dp_aac_t *aac, uint8_t size)

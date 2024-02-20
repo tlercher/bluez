@@ -2335,6 +2335,18 @@ static void print_opus_g(a2dp_opus_g_t *opus, uint8_t size)
 	bt_shell_printf("\n");
 }
 
+static void print_eac3_a(a2dp_eac3_a_t *eac, uint8_t size)
+{
+	bt_shell_printf("\t\tVendor Specific Value (EAC-3 [Apple])");
+
+	if (size < sizeof(*eac)) {
+		bt_shell_printf(" (broken)\n");
+		return;
+	}
+
+	bt_shell_printf("\n");
+}
+
 static void print_vendor(a2dp_vendor_codec_t *vendor, uint8_t size)
 {
 	uint32_t vendor_id;
@@ -2374,6 +2386,8 @@ static void print_vendor(a2dp_vendor_codec_t *vendor, uint8_t size)
 		print_ldac((void *) vendor, size);
 	else if (vendor_id == OPUS_G_VENDOR_ID && codec_id == OPUS_G_CODEC_ID)
 		print_opus_g((void *) vendor, size);
+	else if (vendor_id == EAC3_A_VENDOR_ID && codec_id == EAC3_A_CODEC_ID)
+		print_eac3_a((void *) vendor, size);
 }
 
 static void print_mpeg24(a2dp_aac_t *aac, uint8_t size)
